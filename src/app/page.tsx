@@ -84,9 +84,12 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen gradient-bg text-white">
+    <main className="min-h-screen gradient-bg text-white relative overflow-hidden">
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 grid-pattern pointer-events-none" />
+      
       {/* Header */}
-      <header className="border-b border-gray-800/50 backdrop-blur-sm bg-black/20 sticky top-0 z-50">
+      <header className="border-b border-white/5 backdrop-blur-xl bg-black/40 sticky top-0 z-50">
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold gradient-text">
@@ -94,20 +97,20 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-6">
               <LanguageSwitcher lang={lang} onToggle={toggleLanguage} />
-              <Link href="/docs" className="text-gray-300 hover:text-white transition-colors">
+              <Link href="/docs" className="text-gray-400 hover:text-white transition-colors">
                 {t.docs}
               </Link>
-              <Link href="/team" className="text-gray-300 hover:text-white transition-colors">
+              <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
                 {t.team}
               </Link>
-              <Link href="/community" className="text-gray-300 hover:text-white transition-colors">
+              <Link href="/community" className="text-gray-400 hover:text-white transition-colors">
                 {t.community}
               </Link>
               <a
                 href="https://github.com/oxiaom/trustcoin-ecommerce"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-lg transition-all border border-gray-700/50 hover:border-purple-500/50"
+                className="glass-card px-4 py-2 rounded-lg transition-all hover:bg-white/10"
               >
                 GitHub
               </a>
@@ -117,61 +120,63 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="container mx-auto px-6 py-32 text-center animate-fade-in">
-        <h1 className="text-7xl font-bold mb-6 gradient-text glow-text">
-          {t.heroTitle}
-        </h1>
-        <p className="text-3xl text-gray-200 mb-8 max-w-3xl mx-auto font-light">
-          {t.heroSubtitle}
-        </p>
-        <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-          {t.heroDesc}
-        </p>
-        <div className="flex justify-center space-x-4">
-          <Link
-            href="/docs"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-purple-500/25"
-          >
-            {t.getStarted}
-          </Link>
-          <a
-            href="https://github.com/oxiaom/trustcoin-ecommerce"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-gray-700 hover:border-purple-500/50 px-8 py-3 rounded-lg font-semibold transition-all bg-gray-800/30 hover:bg-gray-800/50"
-          >
-            GitHub
-          </a>
+      <section className="container mx-auto px-6 py-32 text-center relative z-10">
+        <div className="animate-fade-in">
+          <h1 className="text-8xl font-bold mb-6 gradient-text glow-text">
+            {t.heroTitle}
+          </h1>
+          <p className="text-4xl text-gray-100 mb-8 max-w-3xl mx-auto font-light">
+            {t.heroSubtitle}
+          </p>
+          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+            {t.heroDesc}
+          </p>
+          <div className="flex justify-center space-x-4">
+            <Link
+              href="/docs"
+              className="gradient-border px-8 py-3 rounded-lg font-semibold transition-all hover:scale-105 glow"
+            >
+              {t.getStarted}
+            </Link>
+            <a
+              href="https://github.com/oxiaom/trustcoin-ecommerce"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white/10"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="container mx-auto px-6 py-24">
+      <section className="container mx-auto px-6 py-24 relative z-10">
         <h2 className="text-5xl font-bold text-center mb-16 gradient-text">{t.featuresTitle}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800/50 card-hover backdrop-blur-sm">
-            <div className="mb-4">
+          <div className="glass-card p-8 rounded-2xl card-hover">
+            <div className="mb-4 animate-float">
               <DecentralizedIcon />
             </div>
             <h3 className="text-xl font-bold mb-3">{t.feature1Title}</h3>
             <p className="text-gray-400">{t.feature1Desc}</p>
           </div>
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800/50 card-hover backdrop-blur-sm">
-            <div className="mb-4">
+          <div className="glass-card p-8 rounded-2xl card-hover">
+            <div className="mb-4 animate-float" style={{animationDelay: '0.5s'}}>
               <GovernanceIcon />
             </div>
             <h3 className="text-xl font-bold mb-3">{t.feature2Title}</h3>
             <p className="text-gray-400">{t.feature2Desc}</p>
           </div>
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800/50 card-hover backdrop-blur-sm">
-            <div className="mb-4">
+          <div className="glass-card p-8 rounded-2xl card-hover">
+            <div className="mb-4 animate-float" style={{animationDelay: '1s'}}>
               <NetworkIcon />
             </div>
             <h3 className="text-xl font-bold mb-3">{t.feature3Title}</h3>
             <p className="text-gray-400">{t.feature3Desc}</p>
           </div>
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800/50 card-hover backdrop-blur-sm">
-            <div className="mb-4">
+          <div className="glass-card p-8 rounded-2xl card-hover">
+            <div className="mb-4 animate-float" style={{animationDelay: '1.5s'}}>
               <SDKIcon />
             </div>
             <h3 className="text-xl font-bold mb-3">{t.feature4Title}</h3>
@@ -181,31 +186,31 @@ export default function Home() {
       </section>
 
       {/* Use Cases */}
-      <section className="container mx-auto px-6 py-24 bg-gray-900/30">
+      <section className="container mx-auto px-6 py-24 relative z-10">
         <h2 className="text-5xl font-bold text-center mb-16 gradient-text">{t.useCasesTitle}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="text-center bg-gray-900/30 p-8 rounded-2xl border border-gray-800/30 card-hover">
+          <div className="text-center glass-card p-8 rounded-2xl card-hover">
             <div className="mb-4">
               <GameIcon />
             </div>
             <h3 className="text-xl font-bold mb-2">{t.useCase1Title}</h3>
             <p className="text-gray-400">{t.useCase1Desc}</p>
           </div>
-          <div className="text-center bg-gray-900/30 p-8 rounded-2xl border border-gray-800/30 card-hover">
+          <div className="text-center glass-card p-8 rounded-2xl card-hover">
             <div className="mb-4">
               <TutorialIcon />
             </div>
             <h3 className="text-xl font-bold mb-2">{t.useCase2Title}</h3>
             <p className="text-gray-400">{t.useCase2Desc}</p>
           </div>
-          <div className="text-center bg-gray-900/30 p-8 rounded-2xl border border-gray-800/30 card-hover">
+          <div className="text-center glass-card p-8 rounded-2xl card-hover">
             <div className="mb-4">
               <VideoIcon />
             </div>
             <h3 className="text-xl font-bold mb-2">{t.useCase3Title}</h3>
             <p className="text-gray-400">{t.useCase3Desc}</p>
           </div>
-          <div className="text-center bg-gray-900/30 p-8 rounded-2xl border border-gray-800/30 card-hover">
+          <div className="text-center glass-card p-8 rounded-2xl card-hover">
             <div className="mb-4">
               <BlogIcon />
             </div>
@@ -216,10 +221,10 @@ export default function Home() {
       </section>
 
       {/* Tech Stack */}
-      <section className="container mx-auto px-6 py-24">
+      <section className="container mx-auto px-6 py-24 relative z-10">
         <h2 className="text-5xl font-bold text-center mb-16 gradient-text">{t.techStackTitle}</h2>
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800/50 backdrop-blur-sm">
+          <div className="glass-card p-6 rounded-2xl card-hover">
             <h3 className="text-lg font-bold mb-3 text-blue-400">{t.chainLayer}</h3>
             <ul className="text-gray-400 space-y-2">
               <li>• Cosmos SDK v0.53.6</li>
@@ -227,7 +232,7 @@ export default function Home() {
               <li>• Go 1.24.1</li>
             </ul>
           </div>
-          <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800/50 backdrop-blur-sm">
+          <div className="glass-card p-6 rounded-2xl card-hover">
             <h3 className="text-lg font-bold mb-3 text-purple-400">{t.p2pNetwork}</h3>
             <ul className="text-gray-400 space-y-2">
               <li>• IPv6 Priority</li>
@@ -235,7 +240,7 @@ export default function Home() {
               <li>• Self-hosted Relay</li>
             </ul>
           </div>
-          <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800/50 backdrop-blur-sm">
+          <div className="glass-card p-6 rounded-2xl card-hover">
             <h3 className="text-lg font-bold mb-3 text-pink-400">{t.devTools}</h3>
             <ul className="text-gray-400 space-y-2">
               <li>• JavaScript SDK</li>
@@ -247,7 +252,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="container mx-auto px-6 py-24 text-center">
+      <section className="container mx-auto px-6 py-24 text-center relative z-10">
         <h2 className="text-5xl font-bold mb-6 gradient-text">{t.ctaTitle}</h2>
         <p className="text-xl text-gray-300 mb-8">
           {t.ctaDesc}
@@ -255,7 +260,7 @@ export default function Home() {
         <div className="flex justify-center space-x-4">
           <Link
             href="/community"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-purple-500/25"
+            className="gradient-border px-8 py-3 rounded-lg font-semibold transition-all hover:scale-105 glow"
           >
             {t.learnMore}
           </Link>
@@ -263,7 +268,7 @@ export default function Home() {
             href="https://github.com/oxiaom/trustcoin-ecommerce"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-gray-700 hover:border-purple-500/50 px-8 py-3 rounded-lg font-semibold transition-all bg-gray-800/30 hover:bg-gray-800/50"
+            className="glass-card px-8 py-3 rounded-lg font-semibold transition-all hover:bg-white/10"
           >
             GitHub
           </a>
@@ -271,7 +276,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800/50 py-12 bg-gray-900/30">
+      <footer className="border-t border-white/5 py-12 glass-card relative z-10">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -304,7 +309,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800/50 pt-8 text-center text-gray-400">
+          <div className="border-t border-white/5 pt-8 text-center text-gray-400">
             <p>{t.footerCopyright}</p>
           </div>
         </div>
