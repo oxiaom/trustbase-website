@@ -32,6 +32,103 @@ body {
   position: relative;
 }
 
+/* Starfield background */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stars::before,
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 230px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 370px 50px, #fff, transparent),
+    radial-gradient(2px 2px at 440px 180px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 510px 100px, #fff, transparent),
+    radial-gradient(2px 2px at 580px 200px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 650px 60px, #fff, transparent),
+    radial-gradient(2px 2px at 720px 160px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 790px 90px, #fff, transparent),
+    radial-gradient(2px 2px at 860px 220px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 930px 130px, #fff, transparent),
+    radial-gradient(2px 2px at 1000px 40px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 1070px 190px, #fff, transparent),
+    radial-gradient(2px 2px at 1140px 70px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 1210px 210px, #fff, transparent),
+    radial-gradient(2px 2px at 1280px 110px, rgba(255,255,255,0.8), transparent);
+  background-repeat: repeat;
+  background-size: 1300px 300px;
+  animation: twinkle 8s ease-in-out infinite;
+}
+
+.stars::after {
+  background-size: 1500px 400px;
+  animation-delay: -4s;
+  opacity: 0.5;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Shooting star */
+.shooting-star {
+  position: fixed;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  opacity: 0;
+  animation: shoot 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(300px) translateY(300px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .gradient-bg::before {
   content: '';
   position: absolute;

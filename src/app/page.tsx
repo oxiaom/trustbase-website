@@ -85,6 +85,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen gradient-bg text-white relative overflow-hidden">
+      {/* Stars background */}
+      <div className="stars" />
+      
+      {/* Shooting stars */}
+      <div className="shooting-star" style={{top: '10%', left: '20%', animationDelay: '0s'}} />
+      <div className="shooting-star" style={{top: '30%', left: '60%', animationDelay: '2s'}} />
+      <div className="shooting-star" style={{top: '60%', left: '40%', animationDelay: '4s'}} />
+      
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       
