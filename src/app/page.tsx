@@ -1,6 +1,88 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { translations, Language } from "@/lib/translations";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+
+// SVG Icons
+const DecentralizedIcon = () => (
+  <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="12" r="6" className="fill-blue-400" />
+    <circle cx="12" cy="36" r="6" className="fill-blue-400" />
+    <circle cx="36" cy="36" r="6" className="fill-blue-400" />
+    <path d="M24 18 L12 30 M24 18 L36 30 M12 36 L36 36" className="stroke-blue-400" strokeWidth="2" />
+  </svg>
+);
+
+const GovernanceIcon = () => (
+  <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none">
+    <rect x="8" y="20" width="12" height="20" rx="2" className="fill-purple-400" />
+    <rect x="20" y="12" width="12" height="28" rx="2" className="fill-purple-500" />
+    <rect x="32" y="24" width="12" height="16" rx="2" className="fill-purple-400" />
+    <circle cx="14" cy="8" r="4" className="fill-purple-300" />
+    <circle cx="26" cy="8" r="4" className="fill-purple-300" />
+    <circle cx="38" cy="8" r="4" className="fill-purple-300" />
+  </svg>
+);
+
+const NetworkIcon = () => (
+  <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="24" r="16" className="stroke-green-400" strokeWidth="2" fill="none" />
+    <circle cx="24" cy="24" r="8" className="stroke-green-400" strokeWidth="2" fill="none" />
+    <circle cx="24" cy="24" r="3" className="fill-green-400" />
+    <path d="M24 8 L24 16 M24 32 L24 40 M8 24 L16 24 M32 24 L40 24" className="stroke-green-400" strokeWidth="2" />
+  </svg>
+);
+
+const SDKIcon = () => (
+  <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none">
+    <rect x="4" y="8" width="40" height="32" rx="4" className="stroke-orange-400" strokeWidth="2" fill="none" />
+    <path d="M12 20 L20 28 L12 36" className="stroke-orange-400" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M28 20 L36 20 M28 28 L36 28 M28 36 L36 36" className="stroke-orange-400" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
+const GameIcon = () => (
+  <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
+    <rect x="4" y="12" width="32" height="20" rx="4" className="fill-blue-400" />
+    <circle cx="12" cy="22" r="4" className="fill-blue-600" />
+    <circle cx="28" cy="18" r="2" className="fill-blue-600" />
+    <circle cx="32" cy="22" r="2" className="fill-blue-600" />
+    <circle cx="28" cy="26" r="2" className="fill-blue-600" />
+  </svg>
+);
+
+const TutorialIcon = () => (
+  <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
+    <rect x="6" y="4" width="28" height="32" rx="2" className="fill-green-400" />
+    <path d="M12 12 L28 12 M12 18 L28 18 M12 24 L20 24" className="stroke-green-600" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
+const VideoIcon = () => (
+  <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
+    <rect x="4" y="8" width="24" height="24" rx="2" className="fill-purple-400" />
+    <polygon points="32,14 40,20 32,26" className="fill-purple-400" />
+    <polygon points="12,14 20,20 12,26" className="fill-purple-600" />
+  </svg>
+);
+
+const BlogIcon = () => (
+  <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
+    <rect x="6" y="4" width="28" height="32" rx="2" className="fill-orange-400" />
+    <path d="M10 10 L30 10 M10 16 L30 16 M10 22 L24 22 M10 28 L18 28" className="stroke-orange-600" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
 
 export default function Home() {
+  const [lang, setLang] = useState<Language>("zh");
+  const t = translations[lang];
+
+  const toggleLanguage = () => {
+    setLang(lang === "en" ? "zh" : "en");
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
       {/* Header */}
@@ -8,17 +90,18 @@ export default function Home() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              TrustBase Team
+              {t.brand}
             </div>
             <div className="flex items-center space-x-6">
+              <LanguageSwitcher lang={lang} onToggle={toggleLanguage} />
               <Link href="/docs" className="hover:text-blue-400 transition-colors">
-                文档
+                {t.docs}
               </Link>
               <Link href="/team" className="hover:text-blue-400 transition-colors">
-                团队
+                {t.team}
               </Link>
               <Link href="/community" className="hover:text-blue-400 transition-colors">
-                社区
+                {t.community}
               </Link>
               <a
                 href="https://github.com/oxiaom/trustcoin-ecommerce"
@@ -36,21 +119,20 @@ export default function Home() {
       {/* Hero */}
       <section className="container mx-auto px-6 py-20 text-center">
         <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          TrustBase Team
+          {t.heroTitle}
         </h1>
         <p className="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-          构建去中心化信任基础设施
+          {t.heroSubtitle}
         </p>
         <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-          我们提供 P2P 网络、信任评分系统、去中心化治理等核心技术，
-          帮助开发者轻松构建可信的去中心化应用
+          {t.heroDesc}
         </p>
         <div className="flex justify-center space-x-4">
           <Link
             href="/docs"
             className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-colors"
           >
-            开始使用
+            {t.getStarted}
           </Link>
           <a
             href="https://github.com/oxiaom/trustcoin-ecommerce"
@@ -65,72 +147,80 @@ export default function Home() {
 
       {/* Features */}
       <section className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-16">核心特性</h2>
+        <h2 className="text-4xl font-bold text-center mb-16">{t.featuresTitle}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-3xl font-bold mb-4 text-blue-400">[D]</div>
-            <h3 className="text-xl font-bold mb-3">完全去中心化</h3>
-            <p className="text-gray-400">
-              不依赖任何第三方服务，IPv6 P2P 网络，自动 NAT 穿透
-            </p>
+            <div className="mb-4">
+              <DecentralizedIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-3">{t.feature1Title}</h3>
+            <p className="text-gray-400">{t.feature1Desc}</p>
           </div>
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-3xl font-bold mb-4 text-purple-400">[G]</div>
-            <h3 className="text-xl font-bold mb-3">三权分立治理</h3>
-            <p className="text-gray-400">
-              合约 + 索引器 + 议会，权力制衡，透明可审计
-            </p>
+            <div className="mb-4">
+              <GovernanceIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-3">{t.feature2Title}</h3>
+            <p className="text-gray-400">{t.feature2Desc}</p>
           </div>
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-3xl font-bold mb-4 text-green-400">[N]</div>
-            <h3 className="text-xl font-bold mb-3">IPv6 P2P 网络</h3>
-            <p className="text-gray-400">
-              全球可达，无需 NAT 穿透，自动连接最优节点
-            </p>
+            <div className="mb-4">
+              <NetworkIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-3">{t.feature3Title}</h3>
+            <p className="text-gray-400">{t.feature3Desc}</p>
           </div>
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-3xl font-bold mb-4 text-orange-400">[S]</div>
-            <h3 className="text-xl font-bold mb-3">开发者友好</h3>
-            <p className="text-gray-400">
-              完整 SDK（JavaScript/Python），28 个 API 工具，详细文档
-            </p>
+            <div className="mb-4">
+              <SDKIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-3">{t.feature4Title}</h3>
+            <p className="text-gray-400">{t.feature4Desc}</p>
           </div>
         </div>
       </section>
 
       {/* Use Cases */}
       <section className="container mx-auto px-6 py-20 bg-gray-800/50">
-        <h2 className="text-4xl font-bold text-center mb-16">应用场景</h2>
+        <h2 className="text-4xl font-bold text-center mb-16">{t.useCasesTitle}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold mb-4 text-blue-400">[GAME]</div>
-            <h3 className="text-xl font-bold mb-2">游戏开发</h3>
-            <p className="text-gray-400">去中心化游戏，玩家信任评分</p>
+            <div className="mb-4">
+              <GameIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-2">{t.useCase1Title}</h3>
+            <p className="text-gray-400">{t.useCase1Desc}</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold mb-4 text-green-400">[TUTOR]</div>
-            <h3 className="text-xl font-bold mb-2">在线教程</h3>
-            <p className="text-gray-400">去中心化教程，创作者信任评分</p>
+            <div className="mb-4">
+              <TutorialIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-2">{t.useCase2Title}</h3>
+            <p className="text-gray-400">{t.useCase2Desc}</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold mb-4 text-purple-400">[VIDEO]</div>
-            <h3 className="text-xl font-bold mb-2">视频内容</h3>
-            <p className="text-gray-400">去中心化视频，创作者信任评分</p>
+            <div className="mb-4">
+              <VideoIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-2">{t.useCase3Title}</h3>
+            <p className="text-gray-400">{t.useCase3Desc}</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold mb-4 text-orange-400">[BLOG]</div>
-            <h3 className="text-xl font-bold mb-2">文章发布</h3>
-            <p className="text-gray-400">去中心化文章，作者信任评分</p>
+            <div className="mb-4">
+              <BlogIcon />
+            </div>
+            <h3 className="text-xl font-bold mb-2">{t.useCase4Title}</h3>
+            <p className="text-gray-400">{t.useCase4Desc}</p>
           </div>
         </div>
       </section>
 
       {/* Tech Stack */}
       <section className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-16">技术栈</h2>
+        <h2 className="text-4xl font-bold text-center mb-16">{t.techStackTitle}</h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="bg-gray-800 p-6 rounded-xl">
-            <h3 className="text-lg font-bold mb-3 text-blue-400">链层</h3>
+            <h3 className="text-lg font-bold mb-3 text-blue-400">{t.chainLayer}</h3>
             <ul className="text-gray-400 space-y-2">
               <li>• Cosmos SDK v0.53.6</li>
               <li>• CometBFT</li>
@@ -138,19 +228,19 @@ export default function Home() {
             </ul>
           </div>
           <div className="bg-gray-800 p-6 rounded-xl">
-            <h3 className="text-lg font-bold mb-3 text-purple-400">P2P 网络</h3>
+            <h3 className="text-lg font-bold mb-3 text-purple-400">{t.p2pNetwork}</h3>
             <ul className="text-gray-400 space-y-2">
-              <li>• IPv6 优先</li>
-              <li>• 自动 NAT 穿透</li>
-              <li>• 自建 Relay 中继</li>
+              <li>• IPv6 Priority</li>
+              <li>• Auto NAT Traversal</li>
+              <li>• Self-hosted Relay</li>
             </ul>
           </div>
           <div className="bg-gray-800 p-6 rounded-xl">
-            <h3 className="text-lg font-bold mb-3 text-pink-400">开发者工具</h3>
+            <h3 className="text-lg font-bold mb-3 text-pink-400">{t.devTools}</h3>
             <ul className="text-gray-400 space-y-2">
               <li>• JavaScript SDK</li>
               <li>• Python SDK</li>
-              <li>• 28 个 API 工具</li>
+              <li>• 28 API Tools</li>
             </ul>
           </div>
         </div>
@@ -158,16 +248,14 @@ export default function Home() {
 
       {/* CTA */}
       <section className="container mx-auto px-6 py-20 text-center">
-        <h2 className="text-4xl font-bold mb-6">加入我们</h2>
-        <p className="text-xl text-gray-300 mb-8">
-          成为开源贡献者，一起构建去中心化信任基础设施
-        </p>
+        <h2 className="text-4xl font-bold mb-6">{t.ctaTitle}</h2>
+        <p className="text-xl text-gray-300 mb-8">{t.ctaDesc}</p>
         <div className="flex justify-center space-x-4">
           <Link
             href="/community"
             className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 rounded-lg font-semibold transition-all"
           >
-            了解更多
+            {t.learnMore}
           </Link>
           <a
             href="https://github.com/oxiaom/trustcoin-ecommerce"
@@ -186,38 +274,36 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                TrustBase Team
+                {t.footerBrand}
               </div>
-              <p className="text-gray-400">
-                构建去中心化信任基础设施
-              </p>
+              <p className="text-gray-400">{t.footerDesc}</p>
             </div>
             <div>
-              <div className="font-bold mb-4">文档</div>
+              <div className="font-bold mb-4">{t.footerDocs}</div>
               <ul className="text-gray-400 space-y-2">
-                <li><Link href="/docs/api" className="hover:text-white">API 文档</Link></li>
-                <li><Link href="/docs/sdk" className="hover:text-white">SDK 文档</Link></li>
-                <li><Link href="/docs/guide" className="hover:text-white">开发指南</Link></li>
+                <li><Link href="/docs/api" className="hover:text-white">{t.footerApiDocs}</Link></li>
+                <li><Link href="/docs/sdk" className="hover:text-white">{t.footerSdkDocs}</Link></li>
+                <li><Link href="/docs/guide" className="hover:text-white">{t.footerDevGuide}</Link></li>
               </ul>
             </div>
             <div>
-              <div className="font-bold mb-4">社区</div>
+              <div className="font-bold mb-4">{t.footerCommunity}</div>
               <ul className="text-gray-400 space-y-2">
                 <li><a href="https://github.com/oxiaom/trustcoin-ecommerce" target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a></li>
                 <li><Link href="/community" className="hover:text-white">Discord</Link></li>
-                <li><Link href="/blog" className="hover:text-white">博客</Link></li>
+                <li><Link href="/blog" className="hover:text-white">{lang === "zh" ? "博客" : "Blog"}</Link></li>
               </ul>
             </div>
             <div>
-              <div className="font-bold mb-4">关于</div>
+              <div className="font-bold mb-4">{t.footerAbout}</div>
               <ul className="text-gray-400 space-y-2">
-                <li><Link href="/team" className="hover:text-white">团队</Link></li>
-                <li><Link href="/community" className="hover:text-white">贡献者</Link></li>
+                <li><Link href="/team" className="hover:text-white">{t.team}</Link></li>
+                <li><Link href="/community" className="hover:text-white">{t.footerContributors}</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-            <p>© 2026 TrustBase Team. All rights reserved.</p>
+            <p>{t.footerCopyright}</p>
           </div>
         </div>
       </footer>
