@@ -68,28 +68,28 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-center mb-16">核心特性</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-5xl mb-4">🏗️</div>
+            <div className="text-3xl font-bold mb-4 text-blue-400">[D]</div>
             <h3 className="text-xl font-bold mb-3">完全去中心化</h3>
             <p className="text-gray-400">
               不依赖任何第三方服务，IPv6 P2P 网络，自动 NAT 穿透
             </p>
           </div>
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-5xl mb-4">⚖️</div>
+            <div className="text-3xl font-bold mb-4 text-purple-400">[G]</div>
             <h3 className="text-xl font-bold mb-3">三权分立治理</h3>
             <p className="text-gray-400">
               合约 + 索引器 + 议会，权力制衡，透明可审计
             </p>
           </div>
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-5xl mb-4">🌐</div>
+            <div className="text-3xl font-bold mb-4 text-green-400">[N]</div>
             <h3 className="text-xl font-bold mb-3">IPv6 P2P 网络</h3>
             <p className="text-gray-400">
               全球可达，无需 NAT 穿透，自动连接最优节点
             </p>
           </div>
           <div className="bg-gray-800 p-8 rounded-xl hover:bg-gray-750 transition-colors">
-            <div className="text-5xl mb-4">👨‍💻</div>
+            <div className="text-3xl font-bold mb-4 text-orange-400">[S]</div>
             <h3 className="text-xl font-bold mb-3">开发者友好</h3>
             <p className="text-gray-400">
               完整 SDK（JavaScript/Python），28 个 API 工具，详细文档
@@ -103,22 +103,22 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-center mb-16">应用场景</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-6xl mb-4">🎮</div>
+            <div className="text-4xl font-bold mb-4 text-blue-400">[GAME]</div>
             <h3 className="text-xl font-bold mb-2">游戏开发</h3>
             <p className="text-gray-400">去中心化游戏，玩家信任评分</p>
           </div>
           <div className="text-center">
-            <div className="text-6xl mb-4">📚</div>
+            <div className="text-4xl font-bold mb-4 text-green-400">[TUTOR]</div>
             <h3 className="text-xl font-bold mb-2">在线教程</h3>
             <p className="text-gray-400">去中心化教程，创作者信任评分</p>
           </div>
           <div className="text-center">
-            <div className="text-6xl mb-4">🎬</div>
+            <div className="text-4xl font-bold mb-4 text-purple-400">[VIDEO]</div>
             <h3 className="text-xl font-bold mb-2">视频内容</h3>
             <p className="text-gray-400">去中心化视频，创作者信任评分</p>
           </div>
           <div className="text-center">
-            <div className="text-6xl mb-4">📝</div>
+            <div className="text-4xl font-bold mb-4 text-orange-400">[BLOG]</div>
             <h3 className="text-xl font-bold mb-2">文章发布</h3>
             <p className="text-gray-400">去中心化文章，作者信任评分</p>
           </div>
